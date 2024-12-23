@@ -1,0 +1,390 @@
+.font-playfair {
+    font-family: "Playfair Display", serif;
+  }
+  .british-bg {
+    background-color: #f3f4f6;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1)
+      ),
+      url('ocean-waves.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  /* 天气动画样式 */
+  .weather-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 晴天动画 */
+  .weather-clear {
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  }
+  .sun {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: #ffd700;
+    border-radius: 50%;
+    animation: sun-pulse 2s infinite;
+  }
+  @keyframes sun-pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* 雨天动画 */
+  .weather-rain {
+    background: linear-gradient(180deg, #29323c 0%, #485563 100%);
+  }
+  .rain-drop {
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background: #fff;
+    opacity: 0.6;
+  }
+  @keyframes rain {
+    0% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(120%);
+      opacity: 0;
+    }
+  }
+
+  /* 多云动画 */
+  .weather-clouds {
+    background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  }
+  .cloud {
+    position: absolute;
+    background: white;
+    border-radius: 20px;
+    animation: float 4s infinite ease-in-out;
+  }
+  @keyframes float {
+    0% {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(20px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+
+  /* 雪天动画 */
+  .weather-snow {
+    background: linear-gradient(120deg, #e6e9f0 0%, #eef1f5 100%);
+  }
+  .snowflake {
+    position: absolute;
+    color: white;
+    animation: snow 3s linear infinite;
+  }
+  @keyframes snow {
+    0% {
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY(120%) rotate(360deg);
+    }
+  }
+
+  /* 雷暴天气动画 */
+  .weather-thunderstorm {
+    background: linear-gradient(180deg, #1a1a1a 0%, #363636 100%);
+  }
+  .lightning {
+    position: absolute;
+    width: 12px;
+    height: 45px;
+    background: #ffd700;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    animation: lightning 3s infinite;
+    opacity: 0;
+  }
+  @keyframes lightning {
+    0%,
+    95% {
+      opacity: 0;
+      transform: translateY(-10%);
+    }
+    96%,
+    98% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .weather-mist,
+  .weather-fog {
+    background: linear-gradient(120deg, #d4d4d4 0%, #f5f5f5 100%);
+  }
+  .fog-wave {
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.5);
+    filter: blur(8px);
+    animation: fogMove 8s infinite linear;
+  }
+  @keyframes fogMove {
+    0% {
+      transform: translateX(-100%) translateY(0);
+    }
+    100% {
+      transform: translateX(100%) translateY(0);
+    }
+  }
+
+  /* 改进云朵动画 */
+  .cloud {
+    position: absolute;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    opacity: 0.9;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+    &::before {
+      width: 50%;
+      height: 100%;
+      top: -50%;
+      left: 25%;
+    }
+    &::after {
+      width: 30%;
+      height: 60%;
+      top: -30%;
+      left: 10%;
+    }
+  }
+
+  /* 改进雨滴动画 */
+  .rain-drop {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4)
+    );
+    filter: blur(0.5px);
+  }
+
+  .snowflake {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    filter: blur(0.5px);
+  }
+
+  .temperature-animation {
+    position: relative;
+    display: inline-block;
+    animation: temperaturePulse 2s infinite;
+  }
+  @keyframes temperaturePulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  .wind-animation {
+    display: inline-block;
+    animation: windRotate 2s infinite linear;
+  }
+  @keyframes windRotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .weather-night {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #1a237e 0%, #121858 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .is-night .weather-night {
+    opacity: 1;
+  }
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite ease-in-out;
+  }
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  .moon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: inset -10px -10px 0 0 rgba(0, 0, 0, 0.1);
+    animation: moonGlow 4s infinite ease-in-out;
+  }
+  @keyframes moonGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px #ffd700, inset -10px -10px 0 0 rgba(0, 0, 0, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px #ffd700, inset -10px -10px 0 0 rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .cloud-shadow {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    bottom: -20px;
+    background: rgba(0, 0, 0, 0.1);
+    filter: blur(4px);
+    border-radius: 50%;
+    animation: cloudShadow 4s infinite ease-in-out;
+  }
+  @keyframes cloudShadow {
+    0%,
+    100% {
+      transform: scale(0.8);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+  }
+
+  .rain-splash {
+    position: absolute;
+    bottom: 0;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: splash 0.5s ease-out;
+  }
+  @keyframes splash {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+
+  .temperature-change {
+    transition: color 0.3s ease;
+  }
+  .temperature-hot {
+    color: #ff4d4f;
+  }
+  .temperature-cold {
+    color: #40a9ff;
+  }
+  .temperature-mild {
+    color: #52c41a;
+  }
+
+  .forecast-card {
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease;
+  }
+  .forecast-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .weather-icon {
+    transition: transform 0.3s ease;
+  }
+  .weather-icon:hover {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  .loading-animation {
+    width: 50px;
+    height: 50px;
+    position: relative;
+  }
+  .loading-animation::after {
+    content: "🌈";
+    font-size: 24px;
+    position: absolute;
+    animation: loadingRainbow 1s infinite linear;
+  }
+  @keyframes loadingRainbow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .error-animation {
+    animation: errorShake 0.5s ease-in-out;
+  }
+  @keyframes errorShake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-10px);
+    }
+    75% {
+      transform: translateX(10px);
+    }
+  }
+
+  .weather-transition {
+    transition: all 0.5s ease-in-out;
+  }
