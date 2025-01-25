@@ -61,8 +61,8 @@
         const error = document.getElementById("error");
         const errorMessage = error.querySelector(".error-message");
 
-        const googleApiKey = "AIzaSyAzmGgI2StDdcIq2SMmaJFh7zZRBQpvU58";
-        const weatherApiKey = "df52555e353f5190a5bcafd816f2a4ae";
+        const googleApiKey = "YOUR_GOOGLE_API_KEY";
+        const weatherApiKey = "YOUR_WEATHER_API_KEY";
 
         if (!address) {
           error.classList.remove("hidden");
@@ -81,6 +81,9 @@
               address
             )}&key=${googleApiKey}`
           );
+          console.log(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+              address
+            )}&key=${googleApiKey}`);
           const geoData = await geoResponse.json();
 
           if (geoData.results.length === 0) {
